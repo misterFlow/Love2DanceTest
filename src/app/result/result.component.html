@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search Result</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="items?.length > 0; else noItems">
+      <ul *ngFor="let item of items" class="collection">
+        <ion-card>
+        <li class="collection-item"><strong>"{{item.eventName}}"</strong> organized by : <strong>{{item.entityName}}</strong></li>
+        <li>{{item.eventDate}}</li>
+        <li>Dance Style : {{item.danceStyle}}</li>
+        <li>
+          <!--<ion-card>
+            <button ion-button (click)="display()">Display</button>
+            <img src="{{imgsource}}">
+            <ion-img [src]="item.image"></ion-img>
+            <ion-label>{{item.image}}</ion-label>
+          </ion-card>
+        </li>-->
+      </ion-card>
+      </ul>
+    </div>
+  </ion-content>
+
+  <ng-template #noItems>
+    <hr>
+    <h5>There are no items to show</h5>
+  </ng-template>

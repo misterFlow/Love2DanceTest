@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Search Event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+  <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+</agm-map>
+
+<ion-card>
+  <ion-label>Dance Style</ion-label>
+  <ion-select [(ngModel)]="searchStyle" interface="popover" multiple="true">
+    <ion-select-option value="bachata">Bachata</ion-select-option>
+    <ion-select-option value="kizomba">Kizomba</ion-select-option>
+    <ion-select-option value="lindy-hop">Lindy-Hop</ion-select-option>
+    <ion-select-option value="rock'n roll">Rock'n Roll</ion-select-option>
+    <ion-select-option value="salsa">Salsa</ion-select-option>
+    <ion-select-option value="tango">Tango</ion-select-option>
+    <ion-select-option value="any">Any</ion-select-option>
+  </ion-select>
+</ion-card>
+
+<ion-card>
+  <ion-label>Date</ion-label>
+  <ion-datetime [(ngModel)]="searchDate" placeholder="Select a Date"></ion-datetime>
+</ion-card>
+
+<ion-card>
+  <ion-label>Location</ion-label>
+  <br>
+  <ion-label [(ngModel)]="searchAddress">{{this.latitude}} {{this.longitude}}</ion-label>
+</ion-card>
+
+<ion-card>
+  <ion-button shape="round" (click)="readItems()">Search</ion-button>
+</ion-card>

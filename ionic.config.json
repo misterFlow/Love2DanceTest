@@ -1,0 +1,7 @@
+{
+  "name": "Love2DanceTest",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

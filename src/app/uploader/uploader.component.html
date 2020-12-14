@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Upload New Event</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-label>Entity Name</ion-label>
+    <ion-input type="text" [(ngModel)]="entityName" placeholder="name of the organizer"></ion-input>
+  </ion-card>
+
+  <ion-card>
+    <ion-label>Event Name</ion-label>
+    <ion-input type="text" [(ngModel)]="eventName" placeholder="name of the event"></ion-input>
+  </ion-card>
+
+  <ion-card>
+    <ion-label>Event Address</ion-label>
+    <ion-input type="address" [(ngModel)]="eventAddress" placeholder="address of the event"></ion-input>
+  </ion-card>
+
+  <ion-card>
+    <ion-label>Date</ion-label>
+    <ion-datetime [(ngModel)]="eventDate" placeholder="Select a Date"></ion-datetime>
+  </ion-card>
+
+  <ion-card>
+    <ion-label>Dance Style</ion-label>
+    <ion-select [(ngModel)]="danceStyle" interface="popover" multiple="true">
+      <ion-select-option value="bachata">Bachata</ion-select-option>
+      <ion-select-option value="kizomba">Kizomba</ion-select-option>
+      <ion-select-option value="lindy-hop">Lindy-Hop</ion-select-option>
+      <ion-select-option value="rock'n roll">Rock'n Roll</ion-select-option>
+      <ion-select-option value="salsa">Salsa</ion-select-option>
+      <ion-select-option value="tango">Tango</ion-select-option>
+      <ion-select-option value="any">Any</ion-select-option>
+    </ion-select>
+  </ion-card>
+
+  <ion-card>
+    <ion-label position="floating">Entry Price</ion-label>
+    <ion-input [(ngModel)]="price" placeholder="entry price of the event"></ion-input>
+  </ion-card>
+
+  <ion-card>
+    <ion-button #btn (click)="takePicture(btn)" shape="round">Upload or Take Picture</ion-button>
+    <ion-img *ngIf="imgUrl; else noImage" [src]="imgUrl"></ion-img>
+    <ng-template #noImage>
+      <p>No Picture To Display</p>
+    </ng-template>
+  </ion-card>
+
+  <ion-card>
+    <ion-button shape="round" (click)="submitEvent()">Submit</ion-button>
+  </ion-card>
