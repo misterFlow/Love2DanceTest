@@ -56,11 +56,12 @@ export class UploaderComponent implements OnInit {
     Event['eventName'] = this.eventName;
     Event['eventDate'] = this.eventDate;
     Event['danceStyle'] = this.danceStyle;
+    Event['eventAddress'] = this.eventAddress;
     Event['price'] = this.price;
     Event['image'] = this.imgUrl;
 
 
-    this.afstore.collection('users').add(Event);
+    this.afstore.collection('events').add(Event);
     console.log(Event);
 
   }

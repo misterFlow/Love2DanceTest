@@ -8,23 +8,24 @@
 
   <ion-list>
 
-    <ion-item>
+    <ion-item class="roundedInput">
       <ion-label position="floating">Email Address</ion-label>
       <ion-input type="text" [(ngModel)]="email"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="roundedInput">
       <ion-label position="floating">Password</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="roundedInput">
       <ion-label position="floating">Confirm password</ion-label>
       <ion-input type="password" [(ngModel)]="cpassword"></ion-input>
     </ion-item>
 
   </ion-list>
-
-  <ion-button fill="solid" expand="block" color="dark" (click)="register()">Sign Up</ion-button>
-
+  <ion-row>
+    <ion-button fill="solid" expand="block" color="dark" (click)="register()">Sign Up</ion-button>
+    <ion-button fill="solid" expand="block" color="dark" (click)="backToRegister()">Back to Login</ion-button>
+  </ion-row>
 </ion-content>

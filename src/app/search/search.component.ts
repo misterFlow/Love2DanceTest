@@ -4,6 +4,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 
 import { Injectable } from '@angular/core';
@@ -51,7 +52,8 @@ export class SearchComponent implements OnInit {
   }
 
   constructor(
-    public afstore: AngularFirestore
+    public afstore: AngularFirestore,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -78,5 +80,7 @@ export class SearchComponent implements OnInit {
 
   }*/
 
-  readItems() {}
+  readItems() {
+    this.router.navigate(['result'])
+  }
 }

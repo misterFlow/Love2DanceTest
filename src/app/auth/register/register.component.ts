@@ -58,4 +58,7 @@ export class RegisterComponent implements OnInit {
     await alert.present()
   }
 
+  backToRegister() {
+    this.router.navigate(['login'])
+  }
 }

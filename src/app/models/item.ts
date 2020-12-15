@@ -5,5 +5,5 @@ export interface Item {
   danceStyle?: string;
   price?: any;
   image?: string;
-
+  eventAddress?: string;
 }

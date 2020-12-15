@@ -15,7 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { UserService } from './user.service';
+import { UserService } from './services/user.service';
 import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
@@ -47,7 +47,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     }),
     GooglePlaceModule
   ],
-  providers: [UserService],
-  bootstrap: [AppComponent]
+  providers: [UserService], //no use maybe, check
+  bootstrap: [AppComponent] //APpComponent to be charged first no-link to Bootstrap librairy
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ItemService } from '../services/item.service';
 import { Item } from '../models/item';
+import { Router } from '@angular/router';
 //import firebase from 'firebase';
 
 
@@ -18,6 +19,7 @@ export class ResultComponent implements OnInit {
 
   constructor(
     private itemService: ItemService,
+    public router: Router
     //public zone: NgZone
     ) {}
 
@@ -36,4 +38,7 @@ export class ResultComponent implements OnInit {
     })
   }*/
 
+    backToSearch () {
+      this.router.navigate(['search']);
+    }
 }

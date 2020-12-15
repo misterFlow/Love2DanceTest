@@ -19,11 +19,21 @@ export class LoginComponent implements OnInit {
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
+    public alert: AlertController,
     public user: AuthService,
     public afstore: AngularFirestore
     ) { }
 
   ngOnInit() {
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alert.create({
+      header,
+      message,
+      buttons: ["ok"]
+    })
+    await alert.present()
   }
 
   async login() {
@@ -42,10 +52,10 @@ export class LoginComponent implements OnInit {
     } catch(err) {
       console.dir(err)
       if(err.code === "auth/user-not-found") {
-        console.log("User not found")
+        this.showAlert("Error!","User not found")
       }
       if(err.code === "auth/wrong-password") {
-        console.log("Wrong password")
+        this.showAlert("Error!","Wrong password")
       }
     }
   }
