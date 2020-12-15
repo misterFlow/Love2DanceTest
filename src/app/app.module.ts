@@ -19,6 +19,7 @@ import { UserService } from './user.service';
 import { ResultComponent } from './result/result.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBAR5GdtQfvCKkQtcYgC-3TUaz4BvlM6DE'
-    })
+    }),
+    GooglePlaceModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

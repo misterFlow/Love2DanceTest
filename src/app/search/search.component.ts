@@ -11,6 +11,9 @@ import { Observable } from 'rxjs';
 import { ItemService } from '../services/item.service';
 import { map } from 'rxjs/operators';
 
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -18,12 +21,28 @@ import { map } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
 
-  latitude = 46.191245166604446;
-  longitude = 6.135809955994405;
+  latitude : number;
+  longitude : number;
+  //latitude = 46.191245166604446;
+  //longitude = 6.135809955994405;
 
   searchStyle: string
   searchDate: string
   searchAddress: any
+
+  formattedAddress = "";
+
+  options = {
+    componentRestrictions : {
+      country: ['CH']
+    }
+  }
+
+  public handleAddressChange(address: any) {
+    this.formattedAddress = address.formatted_address;
+    this.latitude = address.geometry.location.lat();
+    this.longitude = address.geometry.location.lng();
+  }
 
   onChoseLocation(event) {
     console.log(event);
@@ -35,7 +54,15 @@ export class SearchComponent implements OnInit {
     public afstore: AngularFirestore
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    if(!navigator.geolocation) {
+      console.log('Location is not supported')
+    }
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(`lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`);
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+    });
   }
 
   /*searchEvent() {
