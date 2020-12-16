@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { SearchComponent } from './search/search.component';
 import { ResultComponent } from './result/result.component';
+import { SplashScreen } from '@capacitor/core';
+import { SplashComponent } from './splash/splash.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/splash',
     pathMatch: 'full'
   },
   {
@@ -36,11 +38,15 @@ const routes: Routes = [
   {
     path: 'result',
     component: ResultComponent
+  },
+  {
+    path: 'splash',
+    component: SplashComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

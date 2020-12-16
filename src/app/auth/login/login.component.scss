@@ -1,1 +1,20 @@
+ion-title.title {
+  align-items: flex-start;
+  background-color: transparent;
+  font-family: Impact;
+  font-style: italic;
+}
 
+ion-title.subtitle {
+  padding-top: 25px;
+  align-items: flex-start;
+  background-color: transparent;
+  font-family: 'Trebuchet MS';
+}
+
+ion-title.absolute-title {
+  text-align:left;
+  float: left;
+  padding: 10px;
+  margin:0;
+}

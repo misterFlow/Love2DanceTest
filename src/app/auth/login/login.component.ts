@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { AlertController } from '@ionic/angular';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { Router } from '@angular/router';

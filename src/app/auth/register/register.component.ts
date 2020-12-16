@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 import { AlertController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
     await alert.present()
   }
 
-  backToRegister() {
+  backToLogin() {
     this.router.navigate(['login'])
   }
 }

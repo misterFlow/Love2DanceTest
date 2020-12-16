@@ -1,0 +1,22 @@
+ion-content.background {
+  --background: url(../../assets/img/dancers_on_light_background_1001.jpg) no-repeat 0 0/100% 100%
+}
+
+ion-title.title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  align-items: flex-end;
+  background-color: transparent;
+  font-family: Impact;
+  font-style: italic;
+  color: white;
+}
+
+ion-title.subtitle {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  align-items:flex-end;
+  background-color: transparent;
+  font-family: 'Trebuchet MS';
+  color: white;
+}
