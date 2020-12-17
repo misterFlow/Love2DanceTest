@@ -6,7 +6,7 @@ import { user } from '../models/user';
 })
 export class AuthService {
 
-  private user: user;
+  private user: user
 
   constructor() {
   }

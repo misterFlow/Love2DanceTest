@@ -5,7 +5,7 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-title>Search Event</ion-title>
+    <ion-title class="absolute-title">Search Event</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,33 +13,51 @@
   <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
 </agm-map>
 
-<ion-card>
-  <ion-label>Dance Style</ion-label>
-  <ion-select [(ngModel)]="searchStyle" interface="popover" multiple="true">
-    <ion-select-option value="bachata">Bachata</ion-select-option>
-    <ion-select-option value="kizomba">Kizomba</ion-select-option>
-    <ion-select-option value="lindy-hop">Lindy-Hop</ion-select-option>
-    <ion-select-option value="rock'n roll">Rock'n Roll</ion-select-option>
-    <ion-select-option value="salsa">Salsa</ion-select-option>
-    <ion-select-option value="tango">Tango</ion-select-option>
-    <ion-select-option value="any">Any</ion-select-option>
-  </ion-select>
-</ion-card>
+<ion-content padding class="background">
+  <ion-card>
+    <ion-label>Dance Style</ion-label>
+    <ion-select [(ngModel)]="searchStyle" interface="popover" multiple="true" (ionChange)="getValue()">
+      <ion-select-option value="bachata">Bachata</ion-select-option>
+      <ion-select-option value="kizomba">Kizomba</ion-select-option>
+      <ion-select-option value="lindy-hop">Lindy-Hop</ion-select-option>
+      <ion-select-option value="rock'n roll">Rock'n Roll</ion-select-option>
+      <ion-select-option value="salsa">Salsa</ion-select-option>
+      <ion-select-option value="tango">Tango</ion-select-option>
+      <ion-select-option value="any">Any</ion-select-option>
+    </ion-select>
+  </ion-card>
 
-<ion-card>
-  <ion-label>Date</ion-label>
-  <ion-datetime [(ngModel)]="searchDate" placeholder="Select a Date"></ion-datetime>
-</ion-card>
+  <ion-card>
+    <ion-label>Date</ion-label>
+    <ion-datetime [(ngModel)]="searchDate" placeholder="Select a Date"></ion-datetime>
+  </ion-card>
 
-<ion-card>
-  <ion-label>Location</ion-label>
-    <div class="container">
-      <input size="35" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder="enter search location or select from map"/>
-      <p>Selected location : {{formattedAddress}}</p>
-    </div>
-  <ion-label [(ngModel)]="searchAddress">Selected coordinates : {{this.latitude}} {{this.longitude}}</ion-label>
-</ion-card>
+  <ion-card>
+    <ion-label>Location</ion-label>
+      <div class="container">
+        <input size="35" ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" placeholder="enter search location or select from map"/>
+        <p>Selected location : {{formattedAddress}}</p>
+      </div>
+    <ion-label [(ngModel)]="searchAddress">Selected coordinates : {{this.latitude}} {{this.longitude}}</ion-label>
+  </ion-card>
 
+  <ion-button fill="solid" expand="block" color="dark" (click)="readItems()">Search</ion-button>
 
-  <ion-button shape="round" (click)="readItems()">Search</ion-button>
+  <div *ngIf="events?.length > 0; else noItems">
+    <ul *ngFor="let event of events" class="collection">
+      <div *ngIf="event['danceStyle'] = searchStyle ; else noItems">
+        <ion-card>
+          <li><strong>"{{event.eventName}}"</strong> organized by : <strong>{{event.entityName}}</strong></li>
+          <li>{{event.eventDate}}</li>
+          <li><strong>Dance Style :</strong>{{event.danceStyle}}</li>
+          <li><strong>Image :</strong>{{event.image}}</li>
+        </ion-card>
+      </div>
+    </ul>
+  </div>
+</ion-content>
 
+<ng-template #noItems>
+  <hr>
+  <h5>There are no items to show</h5>
+</ng-template>

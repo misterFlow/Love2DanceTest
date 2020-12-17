@@ -1,14 +1,35 @@
+ion-content.background {
+  --background: url(../../assets/img/people_dancing_2309.jpg) no-repeat 0 0/100% 100%;
+  opacity: 0.5;
+}
+
 ion-title.title {
+  align-items: flex-start;
   background-color: transparent;
   font-family: Impact;
   font-style: italic;
 }
 
 ion-title.subtitle {
+  padding-top: 25px;
+  align-items: flex-start;
   background-color: transparent;
   font-family: 'Trebuchet MS';
 }
 
-ion-header.header {
-  background-color: transparent;
+ion-title.absolute-title {
+  text-align:left;
+  float: left;
+  padding: 10px;
+  margin:0;
+}
+
+ion-button {
+  width: 50%;
+  flex-direction: row;
+  align-content: center;
+}
+
+ion-label {
+  font-style: bold;
 }

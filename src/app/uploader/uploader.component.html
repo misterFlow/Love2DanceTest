@@ -5,11 +5,11 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-title>Upload New Event</ion-title>
+    <ion-title class="absolute-title">Upload New Event</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class="background">
   <ion-card>
     <ion-label>Entity Name</ion-label>
     <ion-input type="text" [(ngModel)]="entityName" placeholder="name of the organizer"></ion-input>
@@ -49,13 +49,14 @@
   </ion-card>
 
   <ion-card>
-    <ion-button #btn (click)="takePicture(btn)" shape="round">Upload or Take Picture</ion-button>
+    <ion-button fill="solid" expand="block" color="dark" #btn (click)="takePicture(btn)">Upload or Take Picture</ion-button>
     <ion-img *ngIf="imgUrl; else noImage" [src]="imgUrl"></ion-img>
     <ng-template #noImage>
       <p>No Picture To Display</p>
     </ng-template>
+    <!--<ion-progress-bar [value]="uploadProgress"></ion-progress-bar>-->
   </ion-card>
 
   <ion-card>
-    <ion-button shape="round" (click)="submitEvent()">Submit</ion-button>
+    <ion-button fill="solid" expand="block" color="dark" (click)="submitEvent()">Submit</ion-button>
   </ion-card>

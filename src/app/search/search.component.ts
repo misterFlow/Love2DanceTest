@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemService } from '../services/item.service';
+import { EventService } from '../services/event.service';
 import { map } from 'rxjs/operators';
 
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { Event } from '../models/event';
 
 
 @Component({
@@ -21,21 +20,17 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-
+  events: Event[];
   latitude : number;
   longitude : number;
-  //latitude = 46.191245166604446;
-  //longitude = 6.135809955994405;
-
   searchStyle: string
   searchDate: string
   searchAddress: any
-
   formattedAddress = "";
 
   options = {
     componentRestrictions : {
-      country: ['CH']
+      country: ['CH','FR','DE','IT']
     }
   }
 
@@ -53,8 +48,9 @@ export class SearchComponent implements OnInit {
 
   constructor(
     public afstore: AngularFirestore,
-    public router: Router
-  ) { }
+    public router: Router,
+    private eventService: EventService
+  ) {}
 
   ngOnInit() {
     if(!navigator.geolocation) {
@@ -67,20 +63,17 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  /*searchEvent() {
-    var docRef = db.collection("users").doc();
-    let Event = {};
-    this.searchDate = Event['eventDate'];
-    this.searchStyle = Event['danceStyle'];
-
-    this.afstore.collection('users').get().then( function () {
-      console.log(doc.data());
-      console.log(Event['eventName'], Event['eventStyle'], Event['eventDate']);
-    });
-
-  }*/
+  getValue() {
+    console.log('searchStyle', this.searchStyle)
+    return this.searchStyle
+  }
 
   readItems() {
-    this.router.navigate(['result'])
+    this.eventService.getEvents().subscribe(events => {
+      console.log(events);
+      this.events = events;
+    })
+    console.log(this.searchStyle)
   }
+
 }

@@ -11,7 +11,9 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { HttpClient } from '@angular/common/http';
 import firebase from 'firebase';
 import "firebase/firestore";
+import { CameraResultType, Plugins } from '@capacitor/core';
 "firebase/firestore";
+import { user } from '../models/user';
 
 
 @Component({
@@ -20,7 +22,6 @@ import "firebase/firestore";
   styleUrls: ['./uploader.component.scss'],
 })
 export class UploaderComponent implements OnInit {
-
   entityName: string
   eventName: string
   eventAddress: string
@@ -30,14 +31,15 @@ export class UploaderComponent implements OnInit {
   eventImage: string
   files: any
   camera: any
-  imgUrl: string = null
-  selectedFile: File = null
+  imgUrl: any = null
+  //selectedFile: File = null
 
   constructor(
     public afstore: AngularFirestore,
     public user: AuthService,
     private _camera: CameraService,
-    private http: HttpClient
+    private http: HttpClient,
+    private storage: AngularFireStorage,
   ) { }
 
 
@@ -48,6 +50,20 @@ export class UploaderComponent implements OnInit {
     btn.disabled = true;
     this.imgUrl = await this._camera.takePicture();
     btn.disabled = false;
+
+    /*const image: any = await Plugins.Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Base64
+    }).catch(
+      err => {
+        console.log('error =>' , err)
+      }
+    );
+    const imagename = Date.now() + '.' + image.format; //use maybe user ID instead
+    console.log('Image : ', imagename, ' => ', image.base64String);
+    const upload = this.storage.ref('eventPictures').child(imagename).putString(image.base64String, 'base64', {contentType: 'image/' + image.format});
+    console.log('upload => ', upload);*/
   }
 
   submitEvent() {
@@ -65,4 +81,6 @@ export class UploaderComponent implements OnInit {
     console.log(Event);
 
   }
+
+
 }

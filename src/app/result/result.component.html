@@ -5,28 +5,34 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-title>Search Result</ion-title>
+    <ion-title class="absolute-title">Search Result</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <div *ngIf="items?.length > 0; else noItems">
-      <ul *ngFor="let item of items" class="collection">
+    <div *ngIf="events?.length > 0; else noItems">
+      <ul *ngFor="let event of events" class="collection">
         <ion-card>
-        <li class="collection-item"><strong>"{{item.eventName}}"</strong> organized by : <strong>{{item.entityName}}</strong></li>
-        <li>{{item.eventDate}}</li>
-        <li>Dance Style : {{item.danceStyle}}</li>
+          <div *ngIf="event['danceStyle'] = 'salsa' ; else noItems">
+        <li class="collection-item"><strong>"{{event.eventName}}"</strong> organized by : <strong>{{event.entityName}}</strong></li>
+        <li>{{event.eventDate}}</li>
+        <li>Dance Style : {{event.danceStyle}}</li>
+        <li>Image : {{event.image}}</li>
         <li>
-          <!--<ion-card>
-            <button ion-button (click)="display()">Display</button>
-            <img src="{{imgsource}}">
-            <ion-img [src]="item.image"></ion-img>
-            <ion-label>{{item.image}}</ion-label>
+          <ion-card>
+            <!--<button ion-button (click)="display()">Display</button>-->
+            <!--<img src="{{imgsource}}">-->
+            <!--<ion-img id="image" [src]="image"></ion-img>-->
+            <!--<ion-label>{{event.image}}</ion-label>-->
           </ion-card>
-        </li>-->
+        </li>
+      </div>
       </ion-card>
       </ul>
     </div>
+
+    <ion-button shape="round" (click)="backToSearch()">Back To Search</ion-button>
+
   </ion-content>
 
   <ng-template #noItems>
@@ -34,4 +40,3 @@
     <h5>There are no items to show</h5>
   </ng-template>
 
-  <ion-button shape="round" (click)="backToSearch()">Back To Search</ion-button>

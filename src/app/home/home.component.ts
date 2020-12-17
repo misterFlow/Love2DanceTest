@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 
@@ -10,10 +11,16 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   constructor(
-    public router: Router
+    public router: Router,
+    public afAuth: AngularFireAuth
   ) { }
 
   ngOnInit(): void {
+  }
+
+  logOut() {
+    this.afAuth.signOut();
+    this.router.navigate(['login'])
   }
 
   goToSearch () {

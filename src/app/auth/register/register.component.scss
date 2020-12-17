@@ -1,3 +1,8 @@
+ion-content.background {
+  --background: url(../../../assets/img/people_dancing_2309.jpg) no-repeat 0 0/100% 50%;
+  opacity: 0.5;
+}
+
 ion-title.title {
   align-items: flex-start;
   background-color: transparent;
@@ -19,33 +24,8 @@ ion-title.absolute-title {
   margin:0;
 }
 
-/*ion-header.header {
-  background-color: transparent;
-}*/
-
-ion-item.roundedInput {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  --border-color: var(--ion-color-medium-shade);
-  --border-radius: 15px;
-  --border-width: 1px;
-  --box-shadow: 2px gray;
-  --highlight-height: 0;
-  --background: #f8f9fa;
-}
-
 ion-button {
   width: 40%;
   flex-direction: row;
   align-content: center;
-  //display: flex;
-  /*justify-content: space-evenly;
-  align-items: center;
-  flex-direction: row;
-  align-self: center;
-  flex-wrap: nowrap;
-  align-content: center;*/
 }

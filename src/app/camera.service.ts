@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraResultType } from '@capacitor/core';
+import { Camera, CameraResultType, Plugins } from '@capacitor/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CameraService {
 
-  constructor() { }
+  constructor(
+    private storage: AngularFireStorage,
+
+  ) { }
 
   async takePicture() {
-    const result = await Camera.getPhoto({
+    /*const result = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
       resultType: CameraResultType.Uri
@@ -22,6 +26,20 @@ export class CameraService {
     if (!result.webPath) {
       // gestion des erreur
     }
-    return result.webPath;
+    return result.webPath;*/
+
+    const image: any = await Plugins.Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Base64
+    }).catch(err => err);
+    console.log('-->', image, image.webPath);
+
+    const imagename = Date.now() + '.' + image.format; //use maybe user ID instead
+    console.log('Image : ', imagename, ' => ', image.base64String);
+    const upload = this.storage.ref('eventPictures').child(imagename).putString(image.base64String, 'base64', {contentType: 'image/' + image.format});
+    console.log('upload => ', upload);
+    return imagename;
+
   }
 }

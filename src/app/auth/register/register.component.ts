@@ -13,6 +13,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class RegisterComponent implements OnInit {
 
   email: string = "";
+  uid: string = "";
   password: string = "";
   cpassword: string = "";
 
@@ -37,8 +38,9 @@ export class RegisterComponent implements OnInit {
     try {
       const res = await this.afAuth.createUserWithEmailAndPassword(email, password)
 
+
       this.afstore.doc(`users/${res.user.uid}`).set({
-        email
+        email,
       })
 
       this.showAlert("Success!", "Welcome aboard")

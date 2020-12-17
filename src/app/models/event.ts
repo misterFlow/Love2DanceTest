@@ -1,4 +1,4 @@
-export interface Item {
+export interface Event {
   entityName?: string;
   eventName?: string;
   eventDate?: Date;

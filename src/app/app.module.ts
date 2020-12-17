@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { SplashComponent } from './splash/splash.component';
+import { EventService } from './services/event.service';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import { SplashComponent } from './splash/splash.component';
     }),
     GooglePlaceModule
   ],
-  providers: [], //no use maybe, check
+  providers: [EventService], //no use maybe, check
   bootstrap: [AppComponent] //APpComponent to be charged first no-link to Bootstrap librairy
 })
 export class AppModule { }

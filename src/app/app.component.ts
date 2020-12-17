@@ -21,9 +21,9 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.platForm.ready().then(() => {
+    /*this.platForm.ready().then(() => {
       this.router.navigateByUrl('splash')
-    })
+    })*/
   };
 
   openFirst() {

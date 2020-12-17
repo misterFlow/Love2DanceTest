@@ -13,5 +13,14 @@ ion-title.subtitle {
 }
 
 ion-header.header {
-  background-color: transparent;
+  flex-direction: row;
+  align-content: center;
+}
+
+ion-button.logout{
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  right: 40px;
+  top: 10px;
 }
